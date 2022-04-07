@@ -16,11 +16,22 @@ const userSchema = new mongoose.Schema(
     password: {
       type: String,
     },
+    isEmailVerified: {
+      type: Boolean,
+      default: true,
+    },
   },
   {
     timestamps: true,
   }
 );
+
+const resetPasswordSchema = new mongoose.Schema({
+	userId: { type: String, required: true },
+	validTill: { type: String },
+	token: { type: String },
+	isUsed: { type: Boolean, default: false },
+});
 
 userSchema.pre("save", async function (next) {
   if (this.isModified("password")) {
@@ -31,4 +42,5 @@ userSchema.pre("save", async function (next) {
 
 module.exports = {
   User: mongoose.model("User", userSchema),
+  ResetPassword: mongoose.model('ResetPassword', resetPasswordSchema),
 };

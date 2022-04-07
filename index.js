@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const app = express();
 const { readdirSync } = require("fs");
+const path = require("path");
 const router = express.Router();
 
 const connectDB = require('./config/db')
@@ -13,6 +14,9 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use(express.json());
 app.use("/api/v1", router);
+
+app.set("views", path.join(__dirname, "view"));
+app.set("view engine", "ejs");
 
 const getDirectories = source =>
     readdirSync(source, { withFileTypes: true })
