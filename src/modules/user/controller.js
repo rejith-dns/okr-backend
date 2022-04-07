@@ -103,7 +103,7 @@ const forgotPassword = async (req, res) => {
 
     const token = await services.generateJWTtoken(user, "1d");
 
-    const link = `${process.env.BACKEND_URL}/reset-password/${user._id}?token=${token}`;
+    const link = `https://okr-frontend.herokuapp.com/reset-password/${user._id}?token=${token}`;
 
     ejs.renderFile(
       path.join(__dirname, "../../views/reset-password.ejs"),
