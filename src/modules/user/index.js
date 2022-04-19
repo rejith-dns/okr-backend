@@ -19,6 +19,7 @@ module.exports = {
     );
     router.put("/updateUser/:id",authguard, validator.updateUser, controller.updateUser);
     router.get('/me',authguard, controller.getUSerDetails);
+    router.get('/get-all-users',authguard, controller.getAllUsers);
     return router;
   },
 };

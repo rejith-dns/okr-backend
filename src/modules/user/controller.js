@@ -216,11 +216,35 @@ const getUSerDetails = async (req, res) => {
     });
   }
 }
+
+
+const getAllUsers = async (req, res) => {
+  try{
+
+    // if(req.user.role != "admin"){
+    //   return res.status(401).json({ message: "Unauthorized" });
+    // }
+    let users = await services.getAllUsers();
+    if(users){
+      return res.status(200).json({ success:true, users });
+    }else{
+      return res.status(404).json({ message: "user not found" });
+    }
+  }catch(error){
+    return res.status(500).json({
+      success: false,
+      message: "Something went wrong",
+    });
+  }
+}
+
+
 module.exports = {
   login,
   signup,
   forgotPassword,
   userResetPassword,
   updateUser,
-  getUSerDetails
+  getUSerDetails,
+  getAllUsers
 };

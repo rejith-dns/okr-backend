@@ -2,17 +2,17 @@ var nodemailer = require("nodemailer");
 
 const sendEmail = async (email, subject, data) => {
 	var transporter = nodemailer.createTransport({
-		host: process.env.HOST || 'smtp.sendgrid.net',
+		host: 'smtp.sendgrid.net',
 		port: 465,
 		secure: true,
 		auth: {
-			user: process.env.HOST_USERNAME ||'apikey',
-			pass: process.env.HOST_PASSWORD || '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',
+			user: 'apikey',
+			pass: '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',
 		}
 	});
 
 	var mailOptions = {
-		from:process.env.HOST_EMAIL || 'rejith.r@deepnetsoft.com',
+		from:'jinu.m@deepnetsoft.com',
 		to: email,
 		subject: subject,
 		html: data

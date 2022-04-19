@@ -32,9 +32,7 @@ async function createReset(data) {
     } else {
       return false;
     }
-  } catch (error) {
-    // logger.error(error);
-  }
+  } catch (error) {}
 }
 
 async function checkTokenResetSchema(token, inputUserId) {
@@ -63,16 +61,31 @@ async function findUserId(userId) {
       return false;
     }
   } catch (error) {
-    // logger.error(error);
+    console.log(error);
+
+    return false;
   }
 }
 
 async function updateUser(user, id) {
   try {
-      let update = await User.findByIdAndUpdate({ _id: id }, user);
-      return update;
+    let update = await User.findByIdAndUpdate({ _id: id }, user);
+    return update;
   } catch (error) {
-      // logger.error(error);
+    console;
+
+    return false;
+  }
+}
+
+async function getAllUsers() {
+  try {
+    let users = await User.find({ role: "user" }).select("-password");
+    return users;
+  } catch (error) {
+    console;
+
+    return false;
   }
 }
 
@@ -82,4 +95,5 @@ module.exports = {
   checkTokenResetSchema,
   updateUser,
   findUserId,
+  getAllUsers,
 };

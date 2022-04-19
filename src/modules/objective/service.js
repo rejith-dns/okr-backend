@@ -41,9 +41,21 @@ const updateObjectiveById = async (objectiveId, treeDat) => {
   }
 };
 
+async function createAssignNode (data){
+  try {
+    let assignNode = await data.save();
+    if (assignNode) {
+      return assignNode;
+    } else {
+      return false;
+    }
+  } catch (error) {}
+}
+
 module.exports = {
   getObjectiveTree,
   getObjectiveById,
   deleteObjectiveById,
   updateObjectiveById,
+  createAssignNode,
 };
